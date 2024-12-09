@@ -83,6 +83,15 @@ paths:
         '500':
           description: Internal server error.
     post:
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       tags:
         - product
       summary: Create a new product
@@ -191,6 +200,14 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
         - name: productId
           in: path
           required: true
@@ -220,6 +237,14 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       requestBody:
         content:
           multipart/form-data:
@@ -249,6 +274,15 @@ paths:
         - cart
       summary: Add a product to the cart
       description: Adds a product to the authenticated user's shopping cart.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       security:
         - bearerAuth: []
       requestBody:
@@ -338,6 +372,15 @@ paths:
       summary: Register user
       description: For new users.
       operationId: registerUser
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       requestBody:
         description: Registered user object
         content:
@@ -380,6 +423,14 @@ paths:
           required: false
           schema:
             type: string
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       responses:
         '200':
           description: successful operation
@@ -412,7 +463,15 @@ paths:
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
-      parameters: []
+      parameters: 
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
       responses:
         default:
           description: successful operation
@@ -531,6 +590,15 @@ paths:
                     example: Password reset link sent to your email.
         '404':
           description: Email not found in the system.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /user/auth/resetPassword:
     post:
       tags:
@@ -568,6 +636,15 @@ paths:
           description: Invalid or expired reset token.
         '404':
           description: User not found.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /order:
     post:
       tags:
@@ -591,6 +668,15 @@ paths:
                 $ref: '#/components/schemas/Order'
         '500':
           description: Internal server error.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /order/{orderId}:
     get:
       tags:
@@ -753,6 +839,15 @@ paths:
           description: Invalid input.
         '403':
           description: Forbidden. Only managers can perform this action.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /category/{categoryId}:
     get:
       tags:
@@ -877,6 +972,15 @@ paths:
           description: Invalid input.
         '403':
           description: Forbidden. Only managers can perform this action.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /role/{roleId}:
     get:
       tags:
@@ -978,6 +1082,15 @@ paths:
                 $ref: '#/components/schemas/Payment'
         '500':
           description: Internal server error.
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
   /payment/checkout/{orderId}:
     post:
       tags:
@@ -987,6 +1100,14 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: X-Idempotency-Key
+          in: header
+          required: true
+          description: A unique key to ensure idempotent processing of the request.
+          schema:
+            type: string
+            format: uuid
+            example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
         - name: orderId
           in: path
           required: true
