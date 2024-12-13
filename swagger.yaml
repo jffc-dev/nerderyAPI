@@ -34,7 +34,7 @@ tags:
   - name: category
     description: Operations about categories
 paths:
-  /product:
+  /products:
     get:
       summary: List all product paginated. They can be filtered by category.
       tags:
@@ -115,7 +115,7 @@ paths:
           description: Invalid input.
         '403':
           description: Forbidden. Only managers can perform this action.
-  /product/{productId}:
+  /products/{productId}:
     get:
       tags:
         - product
@@ -191,7 +191,7 @@ paths:
           description: Forbidden. Only managers can perform this action.
         '404':
           description: Product not found.
-  /product/{productId}/like:
+  /products/{productId}/like:
     post:
       tags:
         - product
@@ -222,7 +222,7 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/ApiResponse'
-  /product/{productId}/uploadImage:
+  /products/{productId}/uploadImage:
     post:
       tags:
         - product
@@ -365,7 +365,7 @@ paths:
           description: Invalid product ID or cart detail.
         '404':
           description: Product not found in the cart.
-  /user/auth/sign-up:
+  /users/auth/sign-up:
     post:
       tags:
         - user
@@ -403,7 +403,7 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/CustomerUser'
-  /user/auth/sign-in:
+  /users/auth/sign-in:
     post:
       tags:
         - user
@@ -454,7 +454,7 @@ paths:
                 type: string
         '400':
           description: Invalid username/password supplied
-  /user/auth/sign-out:
+  /users/auth/sign-out:
     post:
       tags:
         - user
@@ -477,7 +477,7 @@ paths:
           description: successful operation
         '500':
           description: Internal server error.
-  /user/{userId}:
+  /users/{userId}:
     get:
       tags:
         - user
@@ -558,7 +558,7 @@ paths:
           description: User not found
       security:
         - bearerAuth: []
-  /user/auth/forgotPassword:
+  /users/auth/forgotPassword:
     post:
       tags:
         - user
@@ -599,7 +599,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /user/auth/resetPassword:
+  /users/auth/resetPassword:
     post:
       tags:
         - user
@@ -645,7 +645,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /order:
+  /orders:
     post:
       tags:
         - order
@@ -677,7 +677,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /order/{orderId}:
+  /orders/{orderId}:
     get:
       tags:
         - order
@@ -720,7 +720,7 @@ paths:
           description: Invalid order ID.
         '404':
           description: Order not found.
-  /user/{userId}/orders:
+  /users/{userId}/orders:
     get:
       tags:
         - user
@@ -793,7 +793,7 @@ paths:
           description: User not found. The provided userId does not match any existing user.
         '500':
           description: Internal server error.
-  /category:
+  /categories:
     get:
       summary: List all categories
       tags:
@@ -848,7 +848,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /category/{categoryId}:
+  /categories/{categoryId}:
     get:
       tags:
         - category
@@ -926,7 +926,7 @@ paths:
           description: Forbidden. Only managers can perform this action.
         '404':
           description: Category not found.
-  /role:
+  /roles:
     get:
       summary: List all roles
       tags:
@@ -981,7 +981,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /role/{roleId}:
+  /roles/{roleId}:
     get:
       tags:
         - role
@@ -1059,7 +1059,7 @@ paths:
           description: Forbidden. Only managers can perform this action.
         '404':
           description: Role not found.
-  /payment:
+  /payments:
     post:
       tags:
         - payment
@@ -1091,7 +1091,7 @@ paths:
             type: string
             format: uuid
             example: "bfc2675a-32b4-4c4a-a8eb-61f3875d0b63"
-  /payment/checkout/{orderId}:
+  /payments/checkout/{orderId}:
     post:
       tags:
         - payment
@@ -1123,7 +1123,7 @@ paths:
                 $ref: '#/components/schemas/Payment'
         '500':
           description: Internal server error.
-  /payment/{paymentId}:
+  /payments/{paymentId}:
     get:
       tags:
         - payment
